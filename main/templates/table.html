@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<table border="8">
+    <thead>
+    <tr>
+    <th>id</th>
+    <th>data</th>
+    <th>imie</th>
+    <th>2 imie</th>
+    <th>nazwisko</th>
+    <th>platnosc</th>
+    <th>region</th>
+    <th>marka</th>
+    <th>model</th>
+    <th>rodzaj</th>
+    <th>koszulka</th>
+    <th>trasa</th>
+    <th>pasazer</th>
+    <th>pasazer_koszulka</th>
+    <th>UPDATE</th>
+    <th>DELETE</th>
+    
+        <th colspan="3"></th>
+    
+    </tr>
+    </thead>
+    {% for i in rider_list %}
+    
+    <tr class="rows" style="background-color: white" >
+        <td><center>{{ i.id }}</td>
+        <td><center>{{ i.date }}</td>
+        <td><center>{{ i.firstname }}</td>
+        <td><center>{{ i.secondname }}</td>
+        <td><center>{{ i.lastname }}</td>
+        <td><center>{{ i.payment }}</td>
+        <td><center>{{ i.region }}</td>
+        <td><center>{{ i.brand }}</td>
+        <td><center>{{ i.model }}</td>
+        <td><center>{{ i.kind }}</td>
+        <td><center>{{ i.shirt }}</td>
+        <td><center>{{ i.road }}</td>
+        <td><center>{{ i.passenger }}</td>
+        <td><center>{{ i.p_shirt }}</td>
+            <td><a href="/table/{{ i.id }}/update/">
+                <font size="4" color="BLUE">UPDATE</td>
+                    <td><font size="4" color="grey">DELETE</td>     
+                    
+           
+    </tr>
+    {% endfor %}
+    </table>
+    {% endblock %}
+

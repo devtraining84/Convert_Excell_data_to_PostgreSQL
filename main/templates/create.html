@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    date of register:&nbsp;<input type="date" name="date"><br><br>
+    firstname:&nbsp;<input type="text" name="firstname"><br><br>
+    secondname:&nbsp;<input type="text" name="secondname"><br><br>
+    lastname:&nbsp;<input type="text" name="lastname"><br><br>
+    
+    payment:&nbsp;&nbsp;<input type="radio" name="payment" value="False">
+     <label for="False">NO PAYD</label>&nbsp;
+     <input type="radio" name="payment" value="True">
+     <label for="True">PAYD</label><br><br>
+    
+    road:&nbsp;<select name="road">
+      <option value="ON">ON</option>
+      <option value="OFF">OFF</option>
+      </select>
+      <br><br>
+    
+     region:&nbsp;<input type="text" name="region" size="1" value="C"><br><br>
+     brand:&nbsp;<input type="text" name="brand"><br><br>
+     model:&nbsp;<input type="text" name="model"><br><br>
+     kind:&nbsp;<input type="text" name="kind"><br><br>
+    
+     passenger:&nbsp;&nbsp;<input type="radio" name="passenger" value="False">
+     <label for="False">SOLO</label>&nbsp;
+     <input type="radio" name="passenger" value="True">
+     <label for="True">PASSENGER</label><br><br>
+     
+     kind, size of shirt:<br>
+     <select name="shirt">
+      <option value="Męska S">Męska S</option>
+      <option value="Męska M">Męska M</option>
+      <option value="Męska L">Męska L</option>
+      <option value="Męska XL">Męska XL</option>
+      <option value="Męska XXL">Męska XXL</option>
+      <option value="Męska XXXL">Męska XXXL</option>
+      <option value="Damska S">Damska S</option>
+      <option value="Damska M">Damska M</option>
+      <option value="Damska L">Damska L</option>
+      <option value="Damska XL">Damska XL</option>
+      <option value="Damska XXL">Damska XXL</option>
+     
+     
+      </select>
+      <br><br>
+      kind, size of shirt for passenger:<br>
+      <select name="p_shirt">
+       <option value=""></option> 
+       <option value="Męska S">Męska S</option>
+       <option value="Męska M">Męska M</option>
+       <option value="Męska L">Męska L</option>
+       <option value="Męska XL">Męska XL</option>
+       <option value="Męska XXL">Męska XXL</option>
+       <option value="Męska XXXL">Męska XXXL</option>
+       <option value="Damska S">Damska S</option>
+       <option value="Damska M">Damska M</option>
+       <option value="Damska L">Damska L</option>
+       <option value="Damska XL">Damska XL</option>
+       <option value="Damska XXL">Damska XXL</option>
+      
+      
+       </select>
+       <br><br>
+    
+       
+    <input type="submit" value="Save">
+  </form>
+
+  {% endblock %}
+
+  <select id="cars" name="cars">
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="fiat">Fiat</option>
+    <option value="audi">Audi</option>
+  </select>
+  
