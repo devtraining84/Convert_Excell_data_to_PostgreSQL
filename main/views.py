@@ -8,6 +8,7 @@ from .models import PalukRidersModel
 from tablib import Dataset
 from django.http import request, HttpResponse, HttpRequest
 from main.resources import PalukRidersModelResources
+from django.db.models import Count
 
 class StartView(TemplateView):
     template_name="base.html"
@@ -59,6 +60,14 @@ class TableDeleteView(View):
     def get(self, request):
         rider_list = PalukRidersModel.objects.all().order_by('id').values()
         return render(request, 'table_delete.html', {'rider_list': rider_list,})
+
+
+
+
+class TableUnPaymentView(View):
+    def get(self, request):
+        rider_list = PalukRidersModel.objects.filter(payment=False).order_by('id').values()
+        return render(request, 'table.html', {'rider_list': rider_list,})
 
 
 
@@ -120,3 +129,32 @@ class CreateRiderView(View):
         
         
         return redirect('/table/')
+
+
+
+
+
+class StatisticsView(View):
+    def get(self, request):
+        queryset_brands = (PalukRidersModel.objects
+                .values('brand')
+                .annotate(dcount=Count('brand'))
+                .order_by('-dcount'))
+    
+        queryset_regions = (PalukRidersModel.objects
+                .values('region')
+                .annotate(dcount=Count('region'))
+                .order_by('-dcount'))
+
+        queryset_kinds = (PalukRidersModel.objects
+                .values('kind')
+                .annotate(dcount=Count('kind'))
+                .order_by('-dcount'))
+                
+        
+        ctx = {'queryset_brands' : queryset_brands,
+               'queryset_regions': queryset_regions,
+               'queryset_kinds':queryset_kinds
+           
+        }
+        return render(request, 'statistics.html', ctx)

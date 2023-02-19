@@ -1,0 +1,84 @@
+<html>
+<head>
+
+</head>
+<body>
+
+    <a href="/table/" title="table" target="" >back</a>
+    
+<hr>
+Marki:<br>
+<table border="8">
+    <thead>
+    <tr>
+    <th>amount</th>
+    <th>brand</th>
+    
+    
+        <th colspan="3"></th>
+    
+    </tr>
+    </thead>
+    {% for row in queryset_brands %}
+    
+    <tr class="rows" style="background-color: white" >
+        <td><center>{{ row.dcount }}</td>
+        <td><center>{{ row.brand }}</td>
+        
+           
+    </tr>
+    {% endfor %}
+    </table>
+
+    <hr>
+Regiony:<br>
+<table border="8">
+    <thead>
+    <tr>
+    <th>amount</th>
+    <th>region</th>
+    
+    
+        <th colspan="3"></th>
+    
+    </tr>
+    </thead>
+    {% for row in queryset_regions %}
+    
+    <tr class="rows" style="background-color: white" >
+        <td><center>{{ row.dcount }}</td>
+        <td><center>{{ row.region }}</td>
+        
+           
+    </tr>
+    {% endfor %}
+    </table>
+
+    Rodzaje:<br>
+    <table border="8">
+        <thead>
+        <tr>
+        <th>amount</th>
+        <th>kind</th>
+        
+        
+            <th colspan="3"></th>
+        
+        </tr>
+        </thead>
+        {% for row in queryset_kinds %}
+        
+        <tr class="rows" style="background-color: white" >
+            <td><center>{{ row.dcount }}</td>
+            <td><center>{{ row.kind }}</td>
+            
+               
+        </tr>
+        {% endfor %}
+        </table>
+    
+
+
+
+</body>
+</html>
