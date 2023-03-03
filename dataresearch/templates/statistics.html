@@ -1,0 +1,420 @@
+{% load static %}
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}" />
+</head>
+<body>
+
+    <a href="/table/" title="table" target="" >back</a>
+    
+<hr>
+<div>
+    <font size ="5">
+  <b><u>Podzial na marki</u></b><br>
+        <div class="grupy_lewa">    
+           Zapisani wszyscy <br>
+            <table border="8">
+                <thead>
+                <tr>
+                <th>amount</th>
+                <th>brand</th>
+                
+                
+                    <th colspan="3"></th>
+                
+                </tr>
+                </thead>
+                {% for row in queryset_brands %}
+                
+                <tr class="rows" style="background-color: white" >
+                    <td><center>{{ row.dcount }}</td>
+                    <td><center>{{ row.brand }}</td>
+                    
+                    
+                </tr>
+                {% endfor %}
+                </table>
+        </div>
+              
+
+                <div class="grupy_prawa">    
+                    Zapisani i oplaceni:<br>
+                    <table border="8">
+                        <thead>
+                        <tr>
+                        <th>amount</th>
+                        <th>brand</th>
+                        
+                        
+                            <th colspan="3"></th>
+                        
+                        </tr>
+                        </thead>
+                        {% for row in queryset_brands_z %}
+                        
+                        <tr class="rows" style="background-color: white" >
+                            <td><center>{{ row.dcount }}</td>
+                            <td><center>{{ row.brand }}</td>
+                            
+                            
+                        </tr>
+                        {% endfor %}
+                        </table>
+                </div>
+</div>
+
+
+
+
+
+<hr>
+    
+<div> <b><u>Podzial na regiony</u></b><br>
+    <div class="regiony_lewa">        
+        Zapisani :<br>
+        <table border="8">
+            <thead>
+            <tr>
+            <th>amount</th>
+            <th>region</th>
+            
+            
+                <th colspan="3"></th>
+            
+            </tr>
+            </thead>
+            {% for row in queryset_regions %}
+            
+            <tr class="rows" style="background-color: white" >
+                <td><center>{{ row.dcount }}</td>
+                <td><center>{{ row.region }}</td>
+                
+                   
+            </tr>
+            {% endfor %}
+            </table>
+    </div>
+
+
+
+
+    <div class="regiony_prawa">        
+        Zapisani i oplaceni:<br>
+        <table border="8">
+            <thead>
+            <tr>
+            <th>amount</th>
+            <th>region</th>
+            
+            
+                <th colspan="3"></th>
+            
+            </tr>
+            </thead>
+            {% for row in queryset_regions_z %}
+            
+            <tr class="rows" style="background-color: white" >
+                <td><center>{{ row.dcount }}</td>
+                <td><center>{{ row.region }}</td>
+                
+                   
+            </tr>
+            {% endfor %}
+            </table>
+    </div>
+
+
+</div>
+
+<hr>
+
+<div><b><u>Podzial na rodzaje</u></b><br>
+    <div class="rodzaje_lewa">
+    Wszyscy zapisani:<br>
+    <table border="8">
+        <thead>
+        <tr>
+        <th>amount</th>
+        <th>kind</th>
+        
+        
+            <th colspan="3"></th>
+        
+        </tr>
+        </thead>
+        {% for row in queryset_kinds %}
+        
+        <tr class="rows" style="background-color: white" >
+            <td><center>{{ row.dcount }}</td>
+            <td><center>{{ row.kind }}</td>
+            
+               
+        </tr>
+        {% endfor %}
+        </table>
+    </div>
+
+    <div class="rodzaje_prawa">
+        Oplaceni:<br>
+        <table border="8">
+            <thead>
+            <tr>
+            <th>amount</th>
+            <th>kind</th>
+            
+            
+                <th colspan="3"></th>
+            
+            </tr>
+            </thead>
+            {% for row in queryset_kinds_z %}
+            
+            <tr class="rows" style="background-color: white" >
+                <td><center>{{ row.dcount }}</td>
+                <td><center>{{ row.kind }}</td>
+                
+                   
+            </tr>
+            {% endfor %}
+            </table>
+    </div>
+    
+
+
+</div>
+<!-- ------------------------------------------------------------------ -->
+
+        <hr>
+
+
+<div>
+    <b><u>Grupy</u></b><br>
+    
+    <div class="grupy_lewa">
+        Grupy z zapisanych:<br>
+        <table border="8">
+            <thead>
+            <tr>
+            <th>Grupa</th>
+            <th>Liczebnosc</th>
+            
+            
+                <th colspan="3"></th>
+            
+            </tr>
+            </thead>
+            {% for row in data %}
+            
+            <tr class="rows" style="background-color: white" >
+                <td><center>{{ row.group }}</td>
+                <td><center>{{ row.amount }}</td>
+                
+                   
+            </tr>
+            {% endfor %}
+            </table>
+    </div>
+  
+
+
+  <div class="grupy_prawa">
+    Grupy z oplaconych:<br>
+    <table border="8">
+        <thead>
+        <tr>
+        <th>Grupa</th>
+        <th>Liczebnosc</th>
+        
+        
+            <th colspan="3"></th>
+        
+        </tr>
+        </thead>
+        {% for row in data_z %}
+        
+        <tr class="rows" style="background-color: white" >
+            <td><center>{{ row.group }}</td>
+            <td><center>{{ row.amount }}</td>
+            
+               
+        </tr>
+        {% endfor %}
+        </table>
+    </div>
+</div>
+<!-- -------------------------------------------------- -->
+<hr>
+<div>
+    <b><u>Najpopularniejsze imiona</u></b><br>
+    
+    <div class="grupy_lewa">
+        Imiona z zapisanych:<br>
+        <table border="8">
+            <thead>
+            <tr>
+            <th>imie</th>
+            <th>Liczebnosc</th>
+            
+            
+                <th colspan="3"></th>
+            
+            </tr>
+            </thead>
+            {% for row in firstnames %}
+            
+            <tr class="rows" style="background-color: white" >
+                <td><center>{{ row.firstname }}</td>
+                <td><center>{{ row.dcount  }}</td>
+                
+                   
+            </tr>
+            {% endfor %}
+            </table>
+    </div>
+  
+
+
+  <div class="grupy_prawa">
+    Imiona z oplaconych:<br>
+    <table border="8">
+        <thead>
+        <tr>
+        <th>imie</th>
+        <th>Liczebnosc</th>
+        
+        
+            <th colspan="3"></th>
+        
+        </tr>
+        </thead>
+        {% for row in firstnames_z %}
+        
+        <tr class="rows" style="background-color: white" >
+            <td><center>{{ row.firstname }}</td>
+            <td><center>{{ row.dcount  }}</td>
+            
+               
+        </tr>
+        {% endfor %}
+        </table>
+  </div>
+</div>
+
+<!-- -------------------------------------------------- -->
+<hr>
+<div>
+    <b><u>Najpopularniejsze nazwiska</u></b><br>
+    
+    <div class="grupy_lewa">
+        Nazwiska z zapisanych:<br>
+        <table border="8">
+            <thead>
+            <tr>
+            <th>nazwisko</th>
+            <th>Liczebnosc</th>
+            
+            
+                <th colspan="3"></th>
+            
+            </tr>
+            </thead>
+            {% for row in lastnames %}
+            
+            <tr class="rows" style="background-color: white" >
+                <td><center>{{ row.lastname }}</td>
+                <td><center>{{ row.dcount  }}</td>
+                
+                   
+            </tr>
+            {% endfor %}
+            </table>
+            </div>
+  
+
+
+  <div class="grupy_prawa">
+   nazwiska z oplaconych:<br>
+    <table border="8">
+        <thead>
+        <tr>
+        <th>nazwisko</th>
+        <th>Liczebnosc</th>
+        
+        
+            <th colspan="3"></th>
+        
+        </tr>
+        </thead>
+        {% for row in lastnames_z %}
+        
+        <tr class="rows" style="background-color: white" >
+            <td><center>{{ row.lastname }}</td>
+            <td><center>{{ row.dcount  }}</td>
+            
+               
+        </tr>
+        {% endfor %}
+        </table>
+        </div>
+</div>
+<!-- -------------------------------------------------- -->
+<hr>
+<div>
+    <b><u>zestawienie koszulek</u></b><br>
+    
+    <div class="grupy_lewa">
+        Koszulki kierowcow:<br>
+        <table border="8">
+            <thead>
+            <tr>
+            <th>rozmiar</th>
+            <th>ilosc</th>
+            
+            
+                <th colspan="3"></th>
+            
+            </tr>
+            </thead>
+            {% for row in shirt %}
+            
+            <tr class="rows" style="background-color: white" >
+                <td><center>{{ row.shirt }}</td>
+                <td><center>{{ row.dcount  }}</td>
+                
+                   
+            </tr>
+            {% endfor %}
+            </table>
+            </div>
+  
+
+
+  <div class="grupy_prawa">
+  koszulki pasazerow:<br>
+    <table border="8">
+        <thead>
+        <tr>
+        <th>rozmiar</th>
+        <th>ilosc</th>
+        
+        
+            <th colspan="3"></th>
+        
+        </tr>
+        </thead>
+        {% for row in p_shirt %}
+        
+        <tr class="rows" style="background-color: white" >
+            <td><center>{{ row.p_shirt }}</td>
+            <td><center>{{ row.dcount  }}</td>
+            
+               
+        </tr>
+        {% endfor %}
+        </table>
+        </div>
+</div>
+
+        <hr>
+</body>
+</html>

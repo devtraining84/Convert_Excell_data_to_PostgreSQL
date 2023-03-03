@@ -2,16 +2,18 @@
 
 <html>
 <head>
-
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}" />
 </head>
 <body>
     <a href="/import/" title="import" target="" >import xlsx</a>&nbsp;&nbsp;
     <a href="/table/" title="table" target="" >table</a>&nbsp;&nbsp;
     <a href="/table/delete/" title="delete_possible" target="" >table delete possible</a>&nbsp;&nbsp;
-    <a href="/table/unpayment/" title="table" target="" >unpayment</a>&nbsp;&nbsp;
+    <a href="/table/unpayment/" title="table" target="" >function</a>&nbsp;&nbsp;
     <a href="/table/create/" title="create" target="" >Create new record</a>&nbsp;&nbsp;
     <a href="/statistics/" title="statistics" target="" >Statistics</a>&nbsp;&nbsp;
-<br><br>
+    <a href="/cancelation/" title="cancelations" target="" >unpayment and canceled</a>&nbsp;&nbsp;<br>
+    <a href="/addgroup/" title="add_group">add group</a>&nbsp;&nbsp;
+    <a href="/shirts/" title="shirts" target="" >shirts</a>&nbsp;&nbsp;
 {% block content %}
 {% endblock %}
 

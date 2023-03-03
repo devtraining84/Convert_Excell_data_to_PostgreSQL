@@ -1,0 +1,43 @@
+.marki_lewa {
+width:50;
+float:left;
+}
+
+.marki_prawa {
+width: 50%;
+float:right;
+}
+
+.regiony_lewa {
+width:50%;
+float:left;
+}
+    
+.regiony_prawa {
+width: 50%;
+float:right;
+}
+
+.rodzaje_lewa {
+width:50%;
+float:left;
+}
+    
+.rodzaje_prawa {
+width: 50%;
+float:right;
+}
+
+
+.grupy_lewa {
+width:50%;
+float:left;
+}
+        
+.grupy_prawa {
+width:50%;
+float:right;
+}
+    
+
+

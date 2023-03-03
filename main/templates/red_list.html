@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br><br>
+<font size="5"><b>NO PAYMENT </b></font>
+<table border="8">
+    <thead>
+    <tr>
+    <th>id</th>
+    <th>data</th>
+    <th>imie</th>
+    <th>2 imie</th>
+    <th>nazwisko</th>
+    <th>platnosc</th>
+    <th>region</th>
+    <th>marka</th>
+    <th>model</th>
+    <th>rodzaj</th>
+    <th>koszulka</th>
+    <th>trasa</th>
+    <th>pasazer</th>
+    <th>pasazer_koszulka</th>
+    <th>UPDATE</th>
+    <th>DELETE</th>
+    
+        <th colspan="3"></th>
+    
+    </tr>
+    </thead>
+    {% for i in rider_list_red %}
+   
+    <tr class="rows" style="background-color: white" >
+       
+        <td><center><b><font color="red">{{ i.id }}</font></b></td>
+            <td><center><b><font color="red">{{ i.date }}</font></b></td>
+            <td><center><b><font color="red">{{ i.firstname }}</td>
+            <td><center><b><font color="red">{{ i.secondname }}</td>
+            <td><center><b><font color="red">{{ i.lastname }}</td>
+            <td><center><b><font color="red">{{ i.payment }}</td>
+            <td><center><b><font color="red">{{ i.region }}</td>
+            <td><center><b><font color="red">{{ i.brand }}</td>
+            <td><center><b><font color="red">{{ i.model }}</td>
+            <td><center><b><font color="red">{{ i.kind }}</td>
+            <td><center><b><font color="red">{{ i.shirt }}</td>
+            <td><center><b><font color="red">{{ i.road }}</td>
+            <td><center><b><font color="red">{{ i.passenger }}</td>
+            <td><center><b><font color="red">{{ i.p_shirt }}</td>
+                </font>
+                <td><a href="/table/{{ i.id }}/update/">
+                    <font size="4" color="BLUE">UPDATE</td>
+                <td><a href="/table/{{ i.id }}/cancel/">
+                    <font size="4" color="red"><b>CANCEL</td>
+                  
+    </tr>
+    {% endfor %}
+    {% for i in rider_list_black %}
+   
+    <tr class="rows" style="background-color: white" >
+       
+        <td><center><b><font color="black">{{ i.id }}</font></b></td>
+        <td><center><font color="black">{{ i.date }}</font></td>
+        <td><center>{{ i.firstname }}</td>
+        <td><center>{{ i.secondname }}</td>
+        <td><center>{{ i.lastname }}</td>
+        <td><center>{{ i.payment }}</td>
+        <td><center>{{ i.region }}</td>
+        <td><center>{{ i.brand }}</td>
+        <td><center>{{ i.model }}</td>
+        <td><center>{{ i.kind }}</td>
+        <td><center>{{ i.shirt }}</td>
+        <td><center>{{ i.road }}</td>
+        <td><center>{{ i.passenger }}</td>
+        <td><center>{{ i.p_shirt }}</td>
+            </font>
+            <td><a href="/table/{{ i.id }}/update/">
+                <font size="4" color="BLUE">UPDATE</td>
+            <td><a href="/table/{{ i.id }}/cancel/">
+                <font size="4" color="BLUE">CANCEL</td>
+                   
+                  
+    </tr>
+    {% endfor %}
+    </table><br><br>
+
+<hr>
+<font size="6" color="red"><b>ANULOWANI:</b></font>
+
+<table border="8">
+    <thead>
+    <tr>
+    
+    <th>id</th>
+    <th>data</th>
+    <th>imie</th>
+    <th>2 imie</th>
+    <th>nazwisko</th>
+    <th>platnosc</th>
+    <th>region</th>
+    <th>marka</th>
+    <th>model</th>
+    <th>rodzaj</th>
+    <th>koszulka</th>
+    <th>trasa</th>
+    <th>pasazer</th>
+    <th>pasazer_koszulka</th>
+   
+    <th>RESTORE</th>
+    
+        <th colspan="3"></th>
+    
+    </tr>
+    </thead>
+    {% for i in cancel_list %}
+   
+    <tr class="rows" style="background-color: white" >
+       
+        
+        <td><center><b><font color="red">{{ i.id }}</font></b></td>
+        <td><center><font color="red">{{ i.date }}</font></td>
+        <td><center>{{ i.firstname }}</td>
+        <td><center>{{ i.secondname }}</td>
+        <td><center>{{ i.lastname }}</td>
+        <td><center>{{ i.payment }}</td>
+        <td><center>{{ i.region }}</td>
+        <td><center>{{ i.brand }}</td>
+        <td><center>{{ i.model }}</td>
+        <td><center>{{ i.kind }}</td>
+        <td><center>{{ i.shirt }}</td>
+        <td><center>{{ i.road }}</td>
+        <td><center>{{ i.passenger }}</td>
+        <td><center>{{ i.p_shirt }}</td>
+            </font>
+        
+                    <td><a href="/table/{{ i.id }}/restore/">
+                        <font size="4" color="BLUE">RESTORE</td>   
+                    
+                    
+                  
+    </tr>
+    {% endfor %}
+    </table><br><br>
+    {% endblock %}
+

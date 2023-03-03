@@ -4,12 +4,12 @@ from django.views import View
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView, UpdateView
 from import_export import *
-from .models import PalukRidersModel
+from .models import CopyPalukModel, PalukPermamentUnPaymentModel, PalukRidersModel, SubGroupModel, SubGroupNameModel
 from tablib import Dataset
 from django.http import request, HttpResponse, HttpRequest
 from main.resources import PalukRidersModelResources
 from django.db.models import Count
-
+from datetime import datetime, timedelta, date
 class StartView(TemplateView):
     template_name="base.html"
 
@@ -50,7 +50,7 @@ class ImportExcelView(View):
 
 class TableView(View):
     def get(self, request):
-        rider_list = PalukRidersModel.objects.all().order_by('id').values()
+        rider_list = PalukRidersModel.objects.filter(canceled = False).order_by('id').values()
         return render(request, 'table.html', {'rider_list': rider_list,})
 
 
@@ -58,7 +58,7 @@ class TableView(View):
 
 class TableDeleteView(View):
     def get(self, request):
-        rider_list = PalukRidersModel.objects.all().order_by('id').values()
+        rider_list = PalukRidersModel.objects.filter(canceled = False).order_by('id').values()
         return render(request, 'table_delete.html', {'rider_list': rider_list,})
 
 
@@ -66,9 +66,35 @@ class TableDeleteView(View):
 
 class TableUnPaymentView(View):
     def get(self, request):
-        rider_list = PalukRidersModel.objects.filter(payment=False).order_by('id').values()
-        return render(request, 'table.html', {'rider_list': rider_list,})
+        pass
 
+
+
+
+        # for i in range(0,100,1):
+        #     a = PalukRidersModel.objects.filter(id=i)
+        #     if a.exists():
+        #         a = PalukRidersModel.objects.get(id=i)
+        #         b = CopyPalukModel()
+                
+        #         b.date = a.date
+        #         b.firstname = a.firstname
+        #         b.secondname = a.secondname
+        #         b.lastname = a.lastname
+        #         b.payment = a.payment
+        #         b.region = a.region
+        #         b.brand = a.brand
+        #         b.model = a.model
+        #         b.kind = a.kind
+        #         b.shirt = a.shirt
+        #         b.road = a.road
+        #         b.passenger = a.passenger
+        #         b.p_shirt = a.p_shirt
+        #         b.canceled = a.canceled
+        #         b.save()
+        #     else:
+        #         pass
+        return render(request, 'table.html', {})           
 
 
 
@@ -79,6 +105,12 @@ class RiderUpdateView(UpdateView):
     template_name = 'update.html'
     success_url = "/table/"
 
+
+
+#class TableUnPaymentView(View):
+#    def get(self, request):
+#        rider_list = PalukRidersModel.objects.filter(payment=False).filter(canceled = False).order_by('id').values()
+#        return render(request, 'table.html', {'rider_list': rider_list,})
 
 
 
@@ -125,36 +157,57 @@ class CreateRiderView(View):
         a.road = request.POST.get("road")
         a.passenger = request.POST.get("passenger")
         a.p_shirt = request.POST.get("p_shirt")
-        a.save()
-        
+        a.save()        
         
         return redirect('/table/')
 
 
 
 
-
-class StatisticsView(View):
+class CancelView(View):
     def get(self, request):
-        queryset_brands = (PalukRidersModel.objects
-                .values('brand')
-                .annotate(dcount=Count('brand'))
-                .order_by('-dcount'))
-    
-        queryset_regions = (PalukRidersModel.objects
-                .values('region')
-                .annotate(dcount=Count('region'))
-                .order_by('-dcount'))
-
-        queryset_kinds = (PalukRidersModel.objects
-                .values('kind')
-                .annotate(dcount=Count('kind'))
-                .order_by('-dcount'))
-                
         
-        ctx = {'queryset_brands' : queryset_brands,
-               'queryset_regions': queryset_regions,
-               'queryset_kinds':queryset_kinds
-           
-        }
-        return render(request, 'statistics.html', ctx)
+        how_many_days = 12
+       
+        rider_list_black = PalukRidersModel.objects.filter(payment = False).filter(date__gt=datetime.now()-timedelta(days=how_many_days)).filter(canceled = False).order_by('id').values()
+        rider_list_red = PalukRidersModel.objects.filter(payment = False).filter(date__lte=datetime.now()-timedelta(days=how_many_days)).filter(canceled = False).order_by('id').values()
+        cancel_list = PalukRidersModel.objects.filter(canceled = True).order_by("id")
+        ctx = {
+              'rider_list_black': rider_list_black,
+              'rider_list_red': rider_list_red ,
+              'cancel_list': cancel_list
+              }
+        
+        return render(request, 'red_list.html', ctx)
+
+
+ 
+
+class MakeCancelView(View):
+    def get(self, request, id):
+        record = PalukRidersModel.objects.get(id=id)
+        record.canceled = True
+        record.save()
+        return redirect('/cancelation/')
+
+
+
+
+
+class RestoreView(View):
+    def get(self, request, id):
+        record = PalukRidersModel.objects.get(id=id)
+        record.canceled = False
+        record.save()
+        return redirect('/cancelation/')
+
+
+
+
+class GroupCreateView(CreateView):
+    model = SubGroupNameModel
+    fields = ['group']
+    template_name = 'subgroupname_form.html'
+    success_url = '/'
+
+

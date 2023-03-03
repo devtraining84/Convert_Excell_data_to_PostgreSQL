@@ -16,7 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from main.views import CreateRiderView, DeleteRiderView, RiderUpdateView, StartView, ImportExcelView, StatisticsView, TableDeleteView, TableUnPaymentView, TableView
+from main.views import CancelView, CreateRiderView, DeleteRiderView, GroupCreateView, MakeCancelView
+from main.views import RestoreView, RiderUpdateView, StartView, ImportExcelView, TableDeleteView, TableUnPaymentView, TableView
+from dataresearch.views import ShirtsView, StatisticView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,9 +26,14 @@ urlpatterns = [
     path('import/',ImportExcelView.as_view(),name="import-excel"),
     path('table/', TableView.as_view(), name='table'),
     path('table/<slug:pk>/update/', RiderUpdateView.as_view(), name="edit-view"),
+    path('table/<int:id>/cancel/', MakeCancelView.as_view(), name="make-cancel-view"),
+    path('table/<int:id>/restore/', RestoreView.as_view(), name="restore-view"),
     path('table/deleterider/<int:id>', DeleteRiderView.as_view(), name="delete-rider"),
     path('table/delete/', TableDeleteView.as_view(), name='table-delete'),
     path('table/unpayment/', TableUnPaymentView.as_view(), name='table-unpayment'),
     path('table/create/', CreateRiderView.as_view(), name='table-delete'),
-    path('statistics/',StatisticsView.as_view(),name="statistics"),
+    path('statistics/',StatisticView.as_view(),name="statistics"),
+    path('shirts/',ShirtsView.as_view(), name="shirts"),
+    path('cancelation/',CancelView.as_view(),name="cancelations"),
+    path('addgroup/',GroupCreateView.as_view(),name="create-group")
 ]
